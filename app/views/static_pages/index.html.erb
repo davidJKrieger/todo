@@ -16,10 +16,18 @@
 </section>
 
 <script>
-    $(function() {
-        console.log('hello, js!')
-        
-    })
-
-
+  $(function() {
+    $.get("/tasks").success( function( data ) {
+      const htmlString = '';
+      
+      $.each(data, function(index,  task) {
+        var liElement = '<li><div class="view"><input class="toggle" type="checkbox"><label>' +
+         task.title +
+         '</label></div></li>';
+        htmlString += liElement
+      });
+        const ulTodos = $('.todo-list')
+        ulTodos.html(htmlString)
+    });
+  });
 </script>
